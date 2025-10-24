@@ -581,4 +581,58 @@ print_terminal_table(
     title="Economic Objective Function"
 )
 
+#%% Constraint Violations
+def calculate_ccv(g, a, b, dt):
+    """
+    Calculates the cumulative (integrated) constraint violation for the 
+    inequality constraint: a(t) < g(t) < b(t).
 
+    The cumulative violation is defined as the sum (or integral) of the 
+    magnitude of the constraint violation over the entire trajectory.
+
+    Args:
+        g (np.ndarray): The trajectory (the signal/state being constrained).
+        a (np.ndarray): The lower constraint trajectory.
+        b (np.ndarray): The upper constraint trajectory.
+        dt (float): The time step duration (assuming a constant time step).
+
+    Returns:
+        float: The cumulative constraint violation.
+    """
+    # 1. Calculate the Violation for the Lower Bound (g < a)
+    # The violation is: max(0, a - g)
+    # If g is too low (g < a), the violation is (a - g), otherwise 0.
+    lower_violation = np.maximum(0, a - g)    
+    # 2. Calculate the Violation for the Upper Bound (g > b)
+    # The violation is: max(0, g - b)
+    # If g is too high (g > b), the violation is (g - b), otherwise 0.
+    upper_violation = np.maximum(0, g - b)    
+    # 3. Sum the Violations at Each Time Step
+    # The total pointwise violation nu(t) is the sum of the upper and lower violations.
+    total_pointwise_violation = lower_violation + upper_violation    
+    # 4. Calculate the Cumulative Violation (Integration)
+    # This is an approximation of the integral: sum(nu(t) * dt)
+    cumulative_violation = np.sum(total_pointwise_violation) * dt    
+    return cumulative_violation
+
+constraint = {}
+size = int(N_val * 60/h_val)+1
+constraint['CO2 concentration[ppm]'] = pd.DataFrame({'min': 0*np.ones(size),'max': 1.6*np.ones(size)})
+constraint['Air Temperature[^oC]'] = pd.DataFrame({'min': 10*np.ones(size),'max': 25*np.ones(size)})
+constraint['Relative Humidity[%]'] = pd.DataFrame({'min': 0*np.ones(size),'max': 80*np.ones(size)})
+constraint['Top CO2 concentration[ppm]'] = pd.DataFrame({'min': 0*np.ones(size),'max': 2*np.ones(size)})
+constraint['Top Air Temperature[^oC]'] = pd.DataFrame({'min': 0*np.ones(size),'max': 40*np.ones(size)})
+constraint['Top Relative Humidity[%]']  = pd.DataFrame({'min': 0*np.ones(size),'max': 100*np.ones(size)})
+
+state_labels = ['CO2 concentration[ppm]', 'Air Temperature[^oC]', 'Relative Humidity[%]', 'Top CO2 concentration[ppm]', 'Top Air Temperature[^oC]', 'Top Relative Humidity[%]']
+CCV = [[' '] + state_labels] # CCV cumulative constraint violation
+for method in integration_methods:
+    res = [f'{method}']
+    for state in state_labels:
+        res.append(np.round(calculate_ccv(y_gt[method][state], constraint[state]['min'], constraint[state]['max'], h_val*60),4))
+    CCV.append(res)
+    
+print_terminal_table(
+    data=CCV,
+    title=f"Cumulative Constraint Violation per Climate State"
+)
