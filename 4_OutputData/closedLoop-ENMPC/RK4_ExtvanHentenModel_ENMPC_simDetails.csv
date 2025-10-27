@@ -1,0 +1,2 @@
+Integration Method,Integration Timestep [min],Prediction Horizon [hours],Simulated CL Timesteps,Execution Time [sec],Solvers EXIT message
+RK4,30.0,48.0,1,[[77.45021605]],['Maximum_Iterations_Exceeded']

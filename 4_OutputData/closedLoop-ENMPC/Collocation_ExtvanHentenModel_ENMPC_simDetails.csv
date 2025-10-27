@@ -1,0 +1,2 @@
+Integration Method,Integration Timestep [min],Prediction Horizon [hours],Execution Time [sec],Solvers EXIT message
+Collocation,30.0,48.0,[[124.13321805  69.43455672   2.78524208   1.56071186]],"['Solve_Succeeded', 'Restoration_Failed', 'Invalid_Number_Detected', 'Invalid_Number_Detected']"

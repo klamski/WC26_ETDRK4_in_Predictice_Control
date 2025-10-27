@@ -95,7 +95,7 @@ ode = {'x':x, 'p': ca.vertcat(u, d), 'ode':A @ x + ca_model.odes_screen_nonlin(x
 f_gt = ca.integrator('f_gt', 'cvodes', ode, opts)
 
 
-integration_method = "ETDRK4"
+integration_method = "Collocation"
 
 if integration_method == "Collocation":
     f = collocation(h, nx, nu, nd, F)
@@ -198,7 +198,7 @@ ubx = [600, 0.009, 50, 1, 0.009, 50, 1]
 lbu = [0, 0, 0, 2.4e-4]
 ubu = [1.2, 7.5, 150, 0.1]
 
-Nsim = 4#N
+Nsim = 96#N
 x_cl = np.zeros((nx,Nsim+1))
 y_cl = np.zeros((nx,Nsim+1))
 u_cl = np.zeros((nu,Nsim))
@@ -377,7 +377,7 @@ axs[0, 1].set_title("CO$_2$ Concentration [ppm]")
 axs[0, 1].set_ylim(300, 2000)
 beautify(axs[0, 1])
 
-axs[0, 2].axhline(30, color="k", linestyle="--", alpha=0.5, linewidth=0.8)
+axs[0, 2].axhline(25, color="k", linestyle="--", alpha=0.5, linewidth=0.8)
 axs[0, 2].axhline(10, color="k", linestyle="--", alpha=0.5, linewidth=0.8)
 axs[0, 2].plot(time, y_cl[2, :], color="C0", label="Below")
 axs[0, 2].plot(time, y_cl[5, :], color="C1", label="Above")
@@ -452,8 +452,8 @@ plt.show()
 u_labels = ['CO2 Supply', 'Ventilation', 'Heating', 'Air Exchange Flow']
 y_labels = ['Dry Weight[g/m^2]', 'CO2 concentration[ppm]', 'Air Temperature[^oC]', 'Relative Humidity[%]', 'Top CO2 concentration[ppm]', 'Top Air Temperature[^oC]', 'Top Relative Humidity[%]']
 d_labels = ['Irradiance[W· m^{−2}]', 'CO2[kg·m^{−3}]', 'Temperature[^oC]', 'Humidity[kg·m^{−3}]', 'Relative Humidity[%]']
-simDetail_labels = ['Integration Method', 'Integration Timestep [min]', 'Prediction Horizon [hours]', 'Execution Time [sec]', 'Solvers EXIT message']
-simDetails = [integration_method, Delta/60, N*Delta/3600, exec_cl, solver_status]
+simDetail_labels = ['Integration Method', 'Integration Timestep [min]', 'Prediction Horizon [hours]', 'Simulated CL Timesteps', 'Execution Time [sec]', 'Solvers EXIT message']
+simDetails = [integration_method, Delta/60, N*Delta/3600, Nsim, exec_cl, solver_status]
 
 u_cl_df = pd.DataFrame(u_cl.T, columns=u_labels)
 y_cl_df = pd.DataFrame(y_cl.T, columns=y_labels)
