@@ -5,8 +5,11 @@ def collocation(h, nx, nu, nd, f):
     # Number of finite elements
     n = 1
     
+    # Size of the finite elements
+    h = h/n
+    
     # Degree of interpolating polynomial
-    d = 2
+    d = 3
     
     # Get collocation points
     tau_root = np.append(0, ca.collocation_points(d, 'legendre'))
@@ -84,11 +87,18 @@ def collocation(h, nx, nu, nd, f):
     # F = ca.Function('F', [X0,U,W],[XF])
     # F = ca.Function('F', [X0, U, W], [XF],['x0','u', 'd'],['xf'])
     F = ca.Function('F', [X0, ca.vertcat(U, W)], [XF],['x0','p'],['xf'])
-    return F
-    # # Do this iteratively for all finite elements
-    # X = X0
-    # for i in range(n):
-    #   X = F(X,U,W)
+    # return F
+    # Do this iteratively for all finite elements
+    X = X0
+    for i in range(n):
+      X = F(X,ca.vertcat(U, W))
+      
+    # Fixed-step integrator
+    irk_integrator = ca.Function('irk_integrator', {'x0':X0, 'p':ca.vertcat(U, W), 'xf':X},
+                              ca.integrator_in(), ca.integrator_out())
+    
+    return irk_integrator
+    
     
     
     # # Fixed-step integrator

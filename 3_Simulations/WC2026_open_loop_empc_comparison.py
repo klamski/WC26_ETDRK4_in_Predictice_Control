@@ -95,7 +95,7 @@ ode = {'x':x, 'p': ca.vertcat(u, d), 'ode':A @ x + ca_model.odes_screen_nonlin(x
 f_gt = ca.integrator('f_gt', 'cvodes', ode, opts)
 
 
-integration_method = "ETDRK4"
+integration_method = "Collocation"
 
 if integration_method == "Collocation":
     f = collocation(h, nx, nu, nd, F)
@@ -108,10 +108,12 @@ elif integration_method == "RK4":
     
 elif integration_method == "CVODES":
     t0 = 0    
-    opts = {'t0':t0, 'tf':h, 'linear_multistep_method':'bdf'}#, 'newton_scheme','bcgstab');
+    opts = {'t0':t0, 'tf':h, 'linear_multistep_method':'bdf'}#, 'newton_scheme','bcgstab'); #CVODES opts
+    # opts = {'t0':t0, 'tf':h} #collocation opts
     # Create integrator using CVODES
     ode = {'x':x, 'p': ca.vertcat(u, d), 'ode':A @ x + ca_model.odes_screen_nonlin(x, u, d, params)}
     f = ca.integrator('f', 'cvodes', ode, opts)
+    # f = ca.integrator('f', 'rk', ode, opts)
     
 elif integration_method == "ETDRK4":
     M = ca_model.odes_screen_lin(params)
