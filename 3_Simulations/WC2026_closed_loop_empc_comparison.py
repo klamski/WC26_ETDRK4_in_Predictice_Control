@@ -95,7 +95,7 @@ ode = {'x':x, 'p': ca.vertcat(u, d), 'ode':A @ x + ca_model.odes_screen_nonlin(x
 f_gt = ca.integrator('f_gt', 'cvodes', ode, opts)
 
 
-integration_method = "Collocation"
+integration_method = "RK4"
 
 if integration_method == "Collocation":
     f = collocation(h, nx, nu, nd, F)

@@ -9,7 +9,7 @@ from aux_functions import *
 storage = True
 
 # Load Simulated Experiments 
-integration_methods = ["ETDRK4", "Collocation"]#, "RK4", "Collocation", "CVODES"]
+integration_methods = ["ETDRK4", "Collocation", "RK4"]#, "Collocation", "CVODES"]
 u_cl = {}
 y_cl = {}
 d_ol = {}
