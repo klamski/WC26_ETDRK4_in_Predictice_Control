@@ -95,7 +95,7 @@ ode = {'x':x, 'p': ca.vertcat(u, d), 'ode':A @ x + ca_model.odes_screen_nonlin(x
 f_gt = ca.integrator('f_gt', 'cvodes', ode, opts)
 
 
-integration_method = "RK4"
+integration_method = "Collocation"
 
 if integration_method == "Collocation":
     f = collocation(h, nx, nu, nd, F)
@@ -205,6 +205,11 @@ u_cl = np.zeros((nu,Nsim))
 exec_cl = np.zeros((1,Nsim))
 x_cl[:, 0] = x0
 solver_status = []
+historical_x_opt = []  # Stores the full X* prediction (N+1 points)
+historical_y_opt = []  # Stores the full Y* prediction (N+1 points)
+historical_u_opt = []    # Stores the full U* sequence (N points)
+historical_x_gt = []  # Stores the full X ground truth prediction (N+1 points)
+historical_y_gt = []  # Stores the full Y ground truth prediction (N+1 points)
 
 u_guess = np.tile(np.array([0, 0, 0, 2.4e-4]).reshape(-1, 1), (1, N))
 
@@ -309,9 +314,26 @@ for j in range(Nsim):
     x_opt = x_opt.full()
     u_opt = u_opt.full()
     y_opt = y_opt.full()
+    
+    historical_x_opt.append(x_opt)  # Stores the full X* prediction (N+1 points)
+    historical_y_opt.append(y_opt)  # Stores the full Y* prediction (N+1 points)
+    historical_u_opt.append(u_opt)    # Stores the full U* sequence (N points)
+    
+    ##################### SIMULATE THE GROUND TRUTH (For PostSimAnalysis) ############################## 
+    x_gt = np.zeros((nx,N+1))
+    xk_plus = x0
+    x_gt[:, 0] = x0
+    for k in range(N):    
+        xk_plus = f_gt(x0=xk_plus, p= ca.vertcat(u_opt[:,k], d_ol[:, j+k]))["xf"].full().ravel()
+        x_gt[:, k+1] = xk_plus
+
+    y_gt = h(x_gt).full()
+    
+    historical_x_gt.append(x_gt)  # Stores the full X ground truth prediction (N+1 points)
+    historical_y_gt.append(y_gt)  # Stores the full Y ground truth prediction (N+1 points)
         
 
-    ##################### SIMULATE GROUND TRUTH ##############################        
+    ##################### SIMULATE THE NEXT STEP (GROUND TRUTH) ##############################        
     x_cl[:, j+1] = f_gt(x0=x0, p= ca.vertcat(u_opt[:,0], d_ol[:, j]))["xf"].full().ravel()
     exec_cl[:,j] = end_time - start_time # Store Execution Time
     u_cl[:,j] = u_opt[:,0]
@@ -466,6 +488,15 @@ if storage:
     y_cl_df.to_csv(f'../4_OutputData/closedLoop-ENMPC/{integration_method}_ExtvanHentenModel_ENMPC_clOutputs.csv', index=False)
     d_ol_df.to_csv(f'../4_OutputData/closedLoop-ENMPC/{integration_method}_ExtvanHentenModel_ENMPC_weather.csv', index=False)
     simDetails_pd.to_csv(f'../4_OutputData/closedLoop-ENMPC/{integration_method}_ExtvanHentenModel_ENMPC_simDetails.csv', index=False)
-    
-    
+    np.savez(
+        f'../4_OutputData/closedLoop-ENMPC/{integration_method}_ExtvanHentenModel_ENMPC_optimal_groundtruth_predictions.npz',
+        historical_x_opt = historical_x_opt, # Stores the full X* prediction (N+1 points)
+        historical_y_opt = historical_y_opt,  # Stores the full Y* prediction (N+1 points)
+        historical_u_opt = historical_u_opt,    # Stores the full U* sequence (N points)
+        historical_x_gt = historical_x_gt,  # Stores the full X ground truth prediction (N+1 points)
+        historical_y_gt = historical_y_gt  # Stores the full Y ground truth prediction (N+1 points)
+        )
+
+
+
     

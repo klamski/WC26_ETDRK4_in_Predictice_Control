@@ -1,17 +1,21 @@
 Integration Method,Integration Timestep [min],Prediction Horizon [hours],Simulated CL Timesteps,Execution Time [sec],Solvers EXIT message
-ETDRK4,30,48,96,"[[37.22451258 58.90638709 62.26889563 57.48556042 78.34305429 45.61538744
-  41.51645684 52.96651506 47.12875915 32.9694078  44.4691484  48.41220641
-  54.89510918 34.91769481 54.1879077  33.64886904 44.87019753 30.48325062
-  37.16721368 38.87193465 31.2005806  53.69931722 54.60005856 35.30150962
-  31.83314419 45.16520381 53.23479772 39.35134649 38.6406157  36.1407001
-  37.3533299  40.29512739 43.5089066  32.39025331 42.29682112 36.46678472
-  38.31295514 44.84439754 43.05834723 52.7500248  37.5309031  36.17263174
-  39.70028543 59.54394364 69.90959358 35.29645634 41.76359153 37.13347983
-  36.9569335  78.35579681 39.01733494 34.93124104 38.22854638 43.02762341
-  32.41843748 33.46681571 29.82715678 36.64731717 25.14977145 26.77927184
-  46.84715629 30.48744464 39.03517175 29.23855782 59.86838317 64.02592897
-  32.87348795 38.87471628 48.03084469 29.49408102 43.90933847 21.73251271
-  23.31684136 25.74996018 21.08468342 42.0488162  25.96757102 19.95594549
-  21.06932402 51.07401061 31.01662683 30.87782145 39.81752539 31.30044293
-  23.96660638 26.53327274 48.79508471 48.40932083 24.4999783  23.1757319
-  27.84634829 20.79329324 38.0845356  30.18728089 25.42020702 42.57383037]]","['Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded']"
+ETDRK4,30.0,48.0,96,"[[ 47.80733013 105.05551982  98.0208478   68.14104342  52.13791394
+   38.23396611  42.8046298   56.07431293  51.57142806  39.70861006
+   43.2862525   52.4013207   50.9095645   30.21663666  49.30297923
+   47.25741887  79.10137868  45.6283381   68.32150507  67.83346558
+   51.88663888  85.02103019  77.8654952   40.20771646  39.27647161
+   64.27855968  75.771662    61.31242609  47.86341214  70.67813945
+   55.34037066  71.23011136  75.83405375  59.0421176   70.09277511
+   53.10146046  49.11543727  60.03065205  55.61443257  65.34819627
+   43.29326367  53.32716894  60.20617485  83.15714622 105.1098249
+   52.22905731  60.03890252  55.9270649   55.31700206 104.82238388
+   59.43701959  55.33495355  51.75011516  58.8655026   40.19599915
+   33.34310722  29.64100623  48.54386163  31.8349576   37.12599683
+   71.20099449  45.50549412  53.00017071  35.3136692   94.66375852
+   84.96662259  44.05182195  40.88211346  47.72370434  28.00850487
+   50.6257441   28.4542191   29.09628582  39.09792876  24.49992919
+   54.25004172  31.00692749  28.83481932  32.83400726  77.76589632
+   43.19230866  46.32458496  63.49553204  48.21223521  44.05178952
+   40.47790265  80.68309903  70.69403267  33.61127543  30.56691337
+   34.36095428  31.95234275  44.12986684  43.47249746  34.68525648
+   55.13954401]]","['Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded']"

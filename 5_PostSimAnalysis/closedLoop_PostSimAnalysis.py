@@ -9,20 +9,21 @@ from aux_functions import *
 storage = True
 
 # Load Simulated Experiments 
-integration_methods = ["ETDRK4", "Collocation", "RK4"]#, "Collocation", "CVODES"]
+integration_methods = ["ETDRK4", "RK4", "Collocation"]#, "Collocation", "CVODES"]
 u_cl = {}
 y_cl = {}
 d_ol = {}
 simDetails = {}
 exec_times = {}
 solver_exit_msgs = {}
-y_gt  = {}
+historical = {}
 
 for method in integration_methods:
     u_cl[method] = pd.read_csv(f'../4_OutputData/closedLoop-ENMPC/{method}_ExtvanHentenModel_ENMPC_clInputs.csv')
     y_cl[method] = pd.read_csv(f'../4_OutputData/closedLoop-ENMPC/{method}_ExtvanHentenModel_ENMPC_clOutputs.csv')
     d_ol[method] = pd.read_csv(f'../4_OutputData/closedLoop-ENMPC/{method}_ExtvanHentenModel_ENMPC_weather.csv')
     simDetails[method] = pd.read_csv(f'../4_OutputData/closedLoop-ENMPC/{method}_ExtvanHentenModel_ENMPC_simDetails.csv')
+    historical[method] = np.load(f'../4_OutputData/closedLoop-ENMPC/{method}_ExtvanHentenModel_ENMPC_optimal_groundtruth_predictions.npz')
 
     # Convert string to list of strings
     solver_exit_msgs[method] = ast.literal_eval(simDetails[method]['Solvers EXIT message'][0])
@@ -30,6 +31,8 @@ for method in integration_methods:
     cleaned_string = simDetails[method]['Execution Time [sec]'][0].replace('\n', ' ').replace('\xa0', ' ').strip('[] ')
     time_array_1d = np.fromstring(cleaned_string, sep=' ')
     exec_times[method] = time_array_1d.reshape(-1, 1)
+    
+
 #%% Ensure that the loaded experiments are done for the same integration time-intervals and prediction horizon
 import pandas as pd
 
@@ -187,11 +190,12 @@ for method in integration_methods:
     plt.show()
     
 #%%
+sDigits = 3
 # Mean Execution time for the closed Loop simulated experiment
 table = [[' '] + integration_methods]
 res = ['t [sec]']
 for method in integration_methods:
-    res.append(np.round(np.mean(exec_times[method]),4))
+    res.append(np.round(np.mean(exec_times[method]),sDigits))
 table.append(res)    
     
 h_val = simDetails[integration_methods[0]]['Integration Timestep [min]'].loc[0]
@@ -201,7 +205,7 @@ print_terminal_table(
     title=f"Single Open Loop Iteration (h = {h_val}[min], N = {N_val}[hours])"
 )
 
-# Calculate Economic Performance 
+#%% Calculate Economic Performance 
 c_co2 = 1e-6 * 0.42 * h
 # per kg/s of CO2
 c_q = 6.35e-9 * h
@@ -219,14 +223,29 @@ for method in integration_methods:
     J_ach = sum(c_dw * (y_cl[method]['Dry Weight[g/m^2]'].loc[Nsim]- y_cl[method]['Dry Weight[g/m^2]'].loc[0])*1e-3 + c_q * u_cl[method]['Heating'] + c_co2 * u_cl[method]['CO2 Supply'])
     abs_dif = J_ach - J_gt
     rel_dif = (J_ach - J_gt)/J_gt*1e2
-    res.append(np.round(J_ach,4))
-    res.append(np.round(abs_dif,4))
-    res.append(np.round(rel_dif,4))
+    res.append(np.round(J_ach,sDigits))
+    res.append(np.round(abs_dif,sDigits))
+    res.append(np.round(rel_dif,sDigits))
     Economics.append(res)
     
 print_terminal_table(
     data=Economics,
     title="Economic Objective Function"
+)
+
+#%% Calculate RMSE between predicted and ground truth states 
+state_labels = ['Dry Weight[g/m^2]', 'CO2 concentration[ppm]', 'Air Temperature[^oC]', 'Relative Humidity[%]', 'Top CO2 concentration[ppm]', 'Top Air Temperature[^oC]', 'Top Relative Humidity[%]']
+RMSE = [[' '] + state_labels]
+RMSEperIter = []
+for method in integration_methods:
+    # RMSEperIter = [f'{method}']
+    for i in range(Nsim):
+        RMSEperIter.append(np.sqrt(np.mean(np.square(historical[method]['historical_y_opt'][i] - historical[method]['historical_y_gt'][i]),axis=1)))
+    RMSE.append([f'{method}'] + np.round(np.mean(RMSEperIter,axis=0),sDigits).tolist())
+    
+print_terminal_table(
+    data=RMSE,
+    title=f"RMSE - Predicted vs Ground Truth states"
 )
 
 
@@ -246,7 +265,8 @@ CCV = [[' '] + state_labels] # CCV cumulative constraint violation
 for method in integration_methods:
     res = [f'{method}']
     for state in state_labels:
-        res.append(np.round(calculate_ccv(y_cl[method][state], constraint[state]['min'], constraint[state]['max'], h_val*60),4))
+        # res.append(np.round(calculate_ccv(y_cl[method][state], constraint[state]['min'], constraint[state]['max'], h_val*60),sDigits))
+        res.append(np.round(calculate_ccv(y_cl[method][state], constraint[state]['min'], constraint[state]['max'], 1),sDigits))
     CCV.append(res)
     
 print_terminal_table(
