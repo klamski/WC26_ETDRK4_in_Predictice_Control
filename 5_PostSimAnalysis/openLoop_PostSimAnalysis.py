@@ -171,7 +171,7 @@ for method in integration_methods:
     ax = axes[1, 4]
     ax.plot(x[:Nsim], u_opt[method]['Air Exchange Flow'], color='darkgreen', linewidth=lineWidth, linestyle='-') 
     ax.set_title('Air Exchange Flow', fontsize = 16.0)  # Title for each subplot
-    ax.set_ylabel('$u_{\mathrm{flow}} \ \ [\mathrm{L}\cdot\mathrm{m}^{-2}\cdot\mathrm{s}^{-1}] \ ??????????$ ', fontsize = 14.0)  # Display ylabel
+    ax.set_ylabel('$u_{\mathrm{flow}} \ \ [\mathrm{L}\cdot\mathrm{m}^{-2}\cdot\mathrm{s}^{-1}]$ ', fontsize = 14.0)  # Display ylabel
     ax.grid(True)  # Add grid
     # ax.set_xlim(start, end)
     ax.set_xlabel('Time [Days]', fontsize = 14.0)
@@ -504,7 +504,7 @@ CCV = [[' '] + state_labels] # CCV cumulative constraint violation
 for method in integration_methods:
     res = [f'{method}']
     for state in state_labels:
-        res.append(np.round(calculate_ccv(y_gt[method][state], constraint[state]['min'], constraint[state]['max'], h_val*60),4))
+        res.append(np.round(calculate_ccv(y_gt[method][state], constraint[state]['min'], constraint[state]['max'], 1),4))#h_val*60),4))
     CCV.append(res)
     
 print_terminal_table(

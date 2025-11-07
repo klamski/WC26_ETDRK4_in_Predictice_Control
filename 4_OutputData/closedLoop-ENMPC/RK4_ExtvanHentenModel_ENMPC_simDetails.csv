@@ -1,21 +1,25 @@
 Integration Method,Integration Timestep [min],Prediction Horizon [hours],Simulated CL Timesteps,Execution Time [sec],Solvers EXIT message
-RK4,30.0,48.0,96,"[[ 35.40500069  45.00610065  46.20790863  58.64838076  31.52993107
-   54.2235446   52.13376331  60.65905428  63.21371794  89.79835844
-   72.58468604  38.47275305  64.54258227  38.39259982  85.76595592
-   69.75285912  76.74150038  78.02491307  86.83980989  76.41774583
-   82.66894484  80.84673738  89.12680364  83.88636684  80.17324877
-   81.53154755  37.441854    62.24713326  88.42342663  92.66896248
-   86.67773104  29.1714642   45.21591997  85.1999352   76.50591445
-   85.24559593  41.7651403   32.09343958  34.68347263  84.649575
-   57.64680028  46.1092627   75.13329506  39.88818407  79.43394184
-   52.57120466  35.8335824   55.74101901  69.26169419  83.40489459
-   30.82920647  91.08662438  71.47985411  59.08691883  67.31511617
-   85.22630692  94.20402074  65.86506009  42.1457808   34.6967957
-   72.17320442  87.4078958   75.3129952   81.55667353 105.79028106
-   73.06458211  67.49860191  62.54078269  23.2999928   17.46576142
-   44.11641431  78.26698971  28.44431496  76.70709658  47.89937568
-   28.14667678  51.61021256  63.9704926   61.78812504  42.11009407
-   42.63049865  63.67027473  63.66930199  47.19108486  26.63155627
-   57.28076982  48.97534156  41.45842028  48.67310143  72.19371629
-   64.98677039   9.32226324  61.874506    46.07418942  63.41405535
-   66.99802828]]","['Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Restoration_Failed', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Restoration_Failed', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Solved_To_Acceptable_Level', 'Restoration_Failed', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Restoration_Failed', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Restoration_Failed', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded']"
+RK4,30.0,48.0,96,"[[7.66385269e+00 1.61337852e-02 8.02040100e-03 6.01625443e-03
+  7.53760338e-03 1.06079578e-02 6.01553917e-03 6.02316856e-03
+  7.75885582e-03 6.01410866e-03 3.59559059e-03 5.02967834e-03
+  7.63034821e-03 9.53841209e-03 1.20637417e-02 5.18631935e-03
+  9.14263725e-03 8.14867020e-03 5.30266762e-03 2.59089470e-03
+  8.41617584e-03 0.00000000e+00 8.50558281e-03 8.37254524e-03
+  8.49390030e-03 5.83744049e-03 8.21089745e-03 1.03669167e-02
+  2.10645652e+01 2.43774076e+01 2.05084491e+01 2.95299933e+01
+  1.32283664e+01 2.11923461e+01 4.01199269e+01 2.56990943e+01
+  2.16611619e+01 9.72514224e+00 3.16662042e+01 2.70490575e+01
+  3.74884748e+01 3.11622765e+01 3.15684121e+01 4.46149704e+01
+  2.01128297e+01 5.99180853e+01 6.00066628e+01 1.93901908e+01
+  1.81631091e+01 1.78004959e+01 1.76233130e+01 3.87784879e+01
+  2.23079391e+01 2.07917254e+01 1.91832049e+01 1.07005932e+01
+  2.26892934e+01 4.92074404e+01 4.55961735e+01 3.75620949e+01
+  7.10153341e+01 5.24387288e+01 7.94557099e+01 2.81635830e+01
+  2.70179279e+01 3.24265034e+01 6.01550143e+01 2.70955722e+01
+  3.13133085e+01 1.05883236e+02 2.50960622e+01 9.34165697e+01
+  3.30551980e+01 2.81821291e+01 4.67266583e+01 2.11337428e+01
+  2.38874094e+01 6.37868662e+01 2.44705200e+01 4.88751500e+01
+  2.28005528e+01 5.46031289e+01 1.57889607e+01 1.74350958e+01
+  2.81125019e+01 5.71020381e+01 2.24345713e+01 4.47425294e+01
+  2.58859451e+01 5.74529529e+01 1.22994967e+01 2.10169120e+01
+  6.11631494e+01 2.45485885e+01 3.13482487e+01 2.41720426e+01]]","['Solve_Succeeded', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Invalid_Number_Detected', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Restoration_Failed', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Maximum_Iterations_Exceeded', 'Solve_Succeeded', 'Solve_Succeeded', 'Solve_Succeeded']"

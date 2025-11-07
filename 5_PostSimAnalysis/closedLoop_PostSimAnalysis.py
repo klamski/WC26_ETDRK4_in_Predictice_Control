@@ -173,7 +173,7 @@ for method in integration_methods:
     ax = axes[1, 4]
     ax.plot(x[:Nsim], u_cl[method]['Air Exchange Flow'], color='darkgreen', linewidth=lineWidth, linestyle='-') 
     ax.set_title('Air Exchange Flow', fontsize = 16.0)  # Title for each subplot
-    ax.set_ylabel('$u_{\mathrm{flow}} \ \ [\mathrm{L}\cdot\mathrm{m}^{-2}\cdot\mathrm{s}^{-1}] \ ??????????$ ', fontsize = 14.0)  # Display ylabel
+    ax.set_ylabel('$u_{\mathrm{flow}} \ \ [\mathrm{L}\cdot\mathrm{m}^{-2}\cdot\mathrm{s}^{-1}] $ ', fontsize = 14.0)  # Display ylabel
     ax.grid(True)  # Add grid
     # ax.set_xlim(start, end)
     ax.set_xlabel('Time [Days]', fontsize = 14.0)

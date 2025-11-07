@@ -1,2 +1,2 @@
 Integration Method,Integration Timestep [min],Prediction Horizon [hours],Execution Time [sec],Solvers EXIT message
-RK4,30.0,48.0,33.58481454849243,Solve_Succeeded
+RK4,30.0,48.0,7.606560468673706,Solve_Succeeded

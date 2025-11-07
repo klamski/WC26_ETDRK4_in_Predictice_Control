@@ -54,7 +54,7 @@ def odes_screen_lin(p):
     M[6, 6] = -0.5 * (1 / p[19]) 
     M[6, 3] = 0.5 * (1 / p[19]) 
 
-    return M
+    return M*1e-3
 
 def odes_screen_nonlin(x, u, d, p):
     """

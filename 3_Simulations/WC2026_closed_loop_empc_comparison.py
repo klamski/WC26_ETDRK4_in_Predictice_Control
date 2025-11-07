@@ -20,7 +20,7 @@ from collocation import collocation
 from stiff_dynamics import stiff_dynamics
 
 # Decide if you want to store the results
-storage = True
+storage = False
 unique_id = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
 #%% Open the file in read mode
@@ -195,8 +195,8 @@ d_p = ca.MX.sym("d_p", nd, N)
 
 lbx = [0, 1e-4, 5, 0, 0, 0, 0]
 ubx = [600, 0.009, 50, 1, 0.009, 50, 1]
-lbu = [0, 0, 0, 2.4e-4]
-ubu = [1.2, 7.5, 150, 0.1]
+lbu = [0, 0, 0, 0.24]#2.4e-4]
+ubu = [1.2, 7.5, 150, 100]#0.1]
 
 Nsim = 96#N
 x_cl = np.zeros((nx,Nsim+1))
@@ -309,7 +309,7 @@ for j in range(Nsim):
     sol = solver(x0=w0, lbx=lbw, ubx=ubw, lbg=lbg, ubg=ubg, p=d_ol[:, j:N+j])
     end_time = time.time()
     print(f'Execution time: {end_time - start_time}  [sec]')
-    
+    print(f'Iteration: {j} / {Nsim}')
     x_opt, u_opt, y_opt = trajectories(sol["x"])
     x_opt = x_opt.full()
     u_opt = u_opt.full()
