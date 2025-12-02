@@ -1,2 +1,2 @@
 Integration Method,Integration Timestep [min],Prediction Horizon [hours],Execution Time [sec],Solvers EXIT message
-Collocation,30.0,48.0,146.12334442138672,Solve_Succeeded
+Collocation,30.0,48.0,3.108400821685791,Invalid_Number_Detected

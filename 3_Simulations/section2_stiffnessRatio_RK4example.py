@@ -74,7 +74,7 @@ x_sim_amax[0, :] = [0.0, 0.0] # Initial state x(0) = [0, 0]
 
 u_sim_min = 2.4e-4*np.ones(N)
 u_sim_max = 1e-1*np.ones(N)
-d_sim = 1*np.ones(N)
+d_sim = -1*np.ones(N)
 
 # --- Select Integrator ---
 integration_method = "RK4"
@@ -177,7 +177,7 @@ for a in [a_min, a_max]:
     # Disturbance input matrix D_d (2x1)
     D_d = np.array([[p_leak/c_air],[0]])
     # Scalar constant disturbance d
-    d = 1.0
+    d = -1.0
     # Initial condition x(0)
     x0 = np.array([0.0, 0.0])
     # Simulation time
@@ -217,7 +217,7 @@ for a in [a_min, a_max]:
 
     
 # --- 5. Plotting ---
-font_size = 18
+font_size = 20
 axis_width = 1.25
 # figsize = (8, 10)
 figsize = (14, 10)
@@ -228,7 +228,7 @@ plt.rcParams.update({
     "font.size": font_size,
     "axes.titlesize": font_size,
     "axes.labelsize": font_size,
-    "legend.fontsize": font_size - 4,
+    "legend.fontsize": font_size - 6,
     "xtick.labelsize": font_size - 4,
     "ytick.labelsize": font_size - 4,
     "axes.linewidth": axis_width
@@ -256,7 +256,8 @@ axs[0].plot(time, x_sim_amax[:, 0], color="darkorchid", marker='o', markersize=4
 axs[0].plot(time, x_sim_exp['a_min'][:,0], color="k", markersize=3, linestyle='--', linewidth = gt_lineWidth, label="VoC - $(a_{min})$")
 axs[0].plot(time, x_sim_exp['a_max'][:,0], color="k", markersize=3, linestyle='-.', linewidth = gt_lineWidth, label="VoC - $(a_{max})$")
 axs[0].set_ylabel("Temperature $[^o\mathrm{C}]$")
-axs[0].set_ylim([-0.5, 1.1])
+# axs[0].set_ylim([-0.5, 1.1])
+axs[0].set_ylim([-1.1, 1.1])
 axs[0].set_xlim([0, N*h])
 axs[0].legend(loc="best", ncol=2, frameon=True, facecolor='white')#, edgecolor='k')
 axs[0].set_title('Response of State $x_1(t)$')
@@ -269,7 +270,8 @@ axs[1].plot(time, x_sim_exp['a_min'][:,1], color="k", markersize=3, linestyle='-
 axs[1].plot(time, x_sim_exp['a_max'][:,1], color="k", markersize=3, linestyle='-.', linewidth = gt_lineWidth, label="VoC - $(a_{max})$")
 axs[1].set_ylabel("Temperature $[^o\mathrm{C}]$")
 axs[1].set_xlabel("Time [sec]")
-axs[1].set_ylim([-0.1, 1.5])
+# axs[1].set_ylim([-0.1, 1.5])
+axs[1].set_ylim([-1.1, 0.25])
 axs[1].set_xlim([0, N*h])
 axs[1].legend(loc="best", ncol=2, frameon=True, facecolor='white')#, edgecolor='k')
 axs[1].set_title('Response of State $x_2(t)$')
@@ -287,15 +289,16 @@ plt.show()
 #%% Plot only state 1
 plt.figure(figsize=(8, 4), dpi=300)
 plt.plot(time, d_sim[:], color="k", linewidth = bd_lineWidth, label="$d_T$")
-plt.plot(time, x_sim_amin[:, 0], color="yellowgreen", marker='o', markersize=4, linestyle='-', label="RK4 - $(a_{min})$")
-plt.plot(time, x_sim_amax[:, 0], color="darkorchid", marker='o', markersize=4, linestyle='-', label="RK4 - $(a_{max})$")
-plt.plot(time, x_sim_exp['a_min'][:,0], color="k", markersize=3, linestyle='--', linewidth = gt_lineWidth, label="Analytic - $(a_{min})$")
-plt.plot(time, x_sim_exp['a_max'][:,0], color="k", markersize=3, linestyle='-.', linewidth = gt_lineWidth, label="Analytic - $(a_{max})$")
+plt.plot(time, x_sim_amin[:, 1], color="yellowgreen", marker='o', markersize=4, linestyle='-', label="RK4 - $(a_{min})$")
+plt.plot(time, x_sim_amax[:, 1], color="darkorchid", marker='o', markersize=4, linestyle='-', label="RK4 - $(a_{max})$")
+plt.plot(time, x_sim_exp['a_min'][:,1], color="k", markersize=3, linestyle='--', linewidth = gt_lineWidth, label="Analytic - $(a_{min})$")
+plt.plot(time, x_sim_exp['a_max'][:,1], color="k", markersize=3, linestyle='-.', linewidth = gt_lineWidth, label="Analytic - $(a_{max})$")
 plt.ylabel("Temperature $[^o\mathrm{C}]$")
-plt.ylim([-0.5, 1.1])
+# plt.ylim([-0.5, 1.1])
+plt.ylim([-1.1, 0.25])
 plt.xlim([0, N*h])
 plt.legend(loc="best", ncol=2, frameon=True, facecolor='white')#, edgecolor='k')
-plt.title('Response of State $x_1(t)$')
+plt.title('Response of State $x_2(t)$')
 plt.xlabel("Time [sec]")
 plt.grid(True, which="both", ls="--")
 

@@ -202,7 +202,20 @@ h_val = simDetails[integration_methods[0]]['Integration Timestep [min]'].loc[0]
 N_val = simDetails[integration_methods[0]]['Prediction Horizon [hours]'].loc[0]
 print_terminal_table(
     data=table, #exectimes_data,
-    title=f"Single Open Loop Iteration (h = {h_val}[min], N = {N_val}[hours])"
+    title=f"Average Exec Time - Closed Loop(h = {h_val}[min], N = {N_val}[hours])"
+)
+# Worst case Execution time for the closed Loop simulated experiment
+table = [[' '] + integration_methods]
+res = ['t [sec]']
+for method in integration_methods:
+    res.append(np.round(np.max(exec_times[method]),sDigits))
+table.append(res)    
+    
+h_val = simDetails[integration_methods[0]]['Integration Timestep [min]'].loc[0]
+N_val = simDetails[integration_methods[0]]['Prediction Horizon [hours]'].loc[0]
+print_terminal_table(
+    data=table, #exectimes_data,
+    title=f"Worst Case Exec Time - Closed Loop(h = {h_val}[min], N = {N_val}[hours])"
 )
 
 #%% Calculate Economic Performance 
